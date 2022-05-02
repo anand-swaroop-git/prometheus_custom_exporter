@@ -1,0 +1,20 @@
+global:
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: prometheus
+    honor_timestamps: true
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: ubuntu_1
+    honor_timestamps: true
+    static_configs:
+      - targets: ["ubuntu_1:9000"]
+
+  - job_name: ubuntu_2
+    honor_timestamps: true
+    static_configs:
+      - targets: ["ubuntu_2:9000"]

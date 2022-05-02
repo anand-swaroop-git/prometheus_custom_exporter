@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+
+  ubuntu_1:
+    build: 
+      context: ./targets/ubuntu_1
+    volumes:
+      - ./collector.py:/collector.py
+    command: python3 collector.py
+    ports:
+      - 9000:9000
+  
+  ubuntu_2:
+    build: 
+      context: ./targets/ubuntu_2
+    volumes:
+      - ./collector.py:/collector.py
+    command: python3 collector.py
+    ports:
+    # The port on the container is same as ubuntu_1 above since
+    # the collector.py is listening on the same port
+      - 9010:9000
+
+
