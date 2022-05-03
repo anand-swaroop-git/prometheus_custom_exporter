@@ -13,8 +13,16 @@ scrape_configs:
     honor_timestamps: true
     static_configs:
       - targets: ["ubuntu_1:9000"]
+        labels:
+          os: linux
+          runtime: container
+          custom_label: test_label_1
 
   - job_name: ubuntu_2
     honor_timestamps: true
     static_configs:
       - targets: ["ubuntu_2:9000"]
+        labels:
+          os: linux
+          runtime: container
+          custom_label: test_label_2
